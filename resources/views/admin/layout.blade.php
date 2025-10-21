@@ -43,6 +43,20 @@
           </a>
         </li>
         <li>
+          <a href="{{ url('/tinhluong') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">payments</span>
+            Tính Lương
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('/chamcong') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">schedule</span>
+            Chấm Công
+          </a>
+        </li>
+        <li>
           <a href="{{ url('/nhanvien') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">work</span>

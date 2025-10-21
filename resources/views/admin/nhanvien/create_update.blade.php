@@ -12,7 +12,7 @@
         <div>
             <label class="block mb-1 font-medium">Mã nhân viên</label>
             <input type="text" class="border rounded w-full px-3 py-2 bg-gray-100"
-                   value="{{ isset($record) ? $record->maNhanVien : 'Hệ thống tự sinh' }}" disabled>
+                value="{{ isset($record) ? $record->maNhanVien : 'Hệ thống tự sinh' }}" disabled>
         </div>
 
         {{-- Người dùng liên kết --}}
@@ -21,8 +21,7 @@
             <select name="maNguoiDung" class="border rounded w-full px-3 py-2">
                 <option value="">-- Chọn người dùng --</option>
                 @foreach($nguoiDungList as $nd)
-                    <option value="{{ $nd->maNguoiDung }}"
-                        {{ old('maNguoiDung', $record->maNguoiDung ?? '') == $nd->maNguoiDung ? 'selected' : '' }}>
+                    <option value="{{ $nd->maNguoiDung }}" {{ old('maNguoiDung', $record->maNguoiDung ?? '') == $nd->maNguoiDung ? 'selected' : '' }}>
                         {{ $nd->tenDangNhap }}
                     </option>
                 @endforeach
@@ -37,7 +36,7 @@
             <div class="flex-1 mb-4 md:mb-0">
                 <label class="block mb-1 font-medium">Họ tên</label>
                 <input type="text" name="hoTen" class="border rounded w-full px-3 py-2"
-                       value="{{ old('hoTen', $record->hoTen ?? '') }}">
+                    value="{{ old('hoTen', $record->hoTen ?? '') }}">
                 @error('hoTen')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
@@ -46,7 +45,7 @@
             <div class="flex-1">
                 <label class="block mb-1 font-medium">Số điện thoại</label>
                 <input type="text" name="soDienThoai" class="border rounded w-full px-3 py-2"
-                       value="{{ old('soDienThoai', $record->soDienThoai ?? '') }}">
+                    value="{{ old('soDienThoai', $record->soDienThoai ?? '') }}">
                 @error('soDienThoai')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
@@ -58,7 +57,7 @@
             <div class="flex-1 mb-4 md:mb-0">
                 <label class="block mb-1 font-medium">Email</label>
                 <input type="email" name="email" class="border rounded w-full px-3 py-2"
-                       value="{{ old('email', $record->email ?? '') }}">
+                    value="{{ old('email', $record->email ?? '') }}">
                 @error('email')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
@@ -67,7 +66,7 @@
             <div class="flex-1">
                 <label class="block mb-1 font-medium">Địa chỉ</label>
                 <input type="text" name="diaChi" class="border rounded w-full px-3 py-2"
-                       value="{{ old('diaChi', $record->diaChi ?? '') }}">
+                    value="{{ old('diaChi', $record->diaChi ?? '') }}">
                 @error('diaChi')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
@@ -79,7 +78,7 @@
             <div class="flex-1 mb-4 md:mb-0">
                 <label class="block mb-1 font-medium">Ngày sinh</label>
                 <input type="date" name="ngaySinh" class="border rounded w-full px-3 py-2"
-                       value="{{ old('ngaySinh', isset($record) ? $record->ngaySinh->format('Y-m-d') : '') }}">
+                    value="{{ old('ngaySinh', isset($record) ? $record->ngaySinh->format('Y-m-d') : '') }}">
                 @error('ngaySinh')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
@@ -89,7 +88,7 @@
                 <label class="block mb-1 font-medium">Giới tính</label>
                 <select name="gioiTinh" class="border rounded w-full px-3 py-2">
                     <option value="">-- Chọn giới tính --</option>
-                    @foreach(['Nam','Nữ','Khác'] as $gt)
+                    @foreach(['Nam', 'Nữ', 'Khác'] as $gt)
                         <option value="{{ $gt }}" {{ old('gioiTinh', $record->gioiTinh ?? '') == $gt ? 'selected' : '' }}>
                             {{ $gt }}
                         </option>
@@ -108,8 +107,7 @@
                 <select name="maChucVu" class="border rounded w-full px-3 py-2">
                     <option value="">-- Chọn chức vụ --</option>
                     @foreach($chucVuList as $cv)
-                        <option value="{{ $cv->maChucVu }}"
-                            {{ old('maChucVu', $record->maChucVu ?? '') == $cv->maChucVu ? 'selected' : '' }}>
+                        <option value="{{ $cv->maChucVu }}" {{ old('maChucVu', $record->maChucVu ?? '') == $cv->maChucVu ? 'selected' : '' }}>
                             {{ $cv->tenChucVu }}
                         </option>
                     @endforeach
@@ -122,8 +120,29 @@
             <div class="flex-1">
                 <label class="block mb-1 font-medium">Ngày vào làm</label>
                 <input type="date" name="ngayVaoLam" class="border rounded w-full px-3 py-2"
-                       value="{{ old('ngayVaoLam', isset($record) ? $record->ngayVaoLam->format('Y-m-d') : '') }}">
+                    value="{{ old('ngayVaoLam', isset($record) && $record->ngayVaoLam ? $record->ngayVaoLam->format('Y-m-d') : '') }}">
                 @error('ngayVaoLam')
+                    <div class="text-red-600 text-sm">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        {{-- Lương cơ bản + Phụ cấp --}}
+        <div class="flex flex-col md:flex-row md:space-x-4">
+            <div class="flex-1 mb-4 md:mb-0">
+                <label class="block mb-1 font-medium">Lương cơ bản (VNĐ)</label>
+                <input type="number" step="0.01" min="0" name="luongCoBan" class="border rounded w-full px-3 py-2"
+                    value="{{ old('luongCoBan', $record->luongCoBan ?? '') }}">
+                @error('luongCoBan')
+                    <div class="text-red-600 text-sm">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="flex-1">
+                <label class="block mb-1 font-medium">Phụ cấp (VNĐ)</label>
+                <input type="number" step="0.01" min="0" name="phuCap" class="border rounded w-full px-3 py-2"
+                    value="{{ old('phuCap', $record->phuCap ?? '') }}">
+                @error('phuCap')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
             </div>

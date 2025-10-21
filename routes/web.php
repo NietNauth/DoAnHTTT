@@ -59,4 +59,26 @@ Route::get('nhanvien/update/{maNhanVien}', [NhanVienController::class, 'update']
 Route::post('nhanvien/update-post/{maNhanVien}', [NhanVienController::class, 'updatePost']);
 Route::get('nhanvien/delete/{maNhanVien}', [NhanVienController::class, 'delete']);
 Route::get('nhanvien/search', [NhanVienController::class, 'search']);
+Route::get('nhanvien/detail/{maNhanVien}', [NhanVienController::class, 'detail']);
+
+use App\Http\Controllers\Admin\ChamCongController;
+Route::get('chamcong', [ChamCongController::class, 'index']);
+Route::get('chamcong/create', [ChamCongController::class, 'create']);
+Route::post('chamcong/create-post', [ChamCongController::class, 'createPost']);
+Route::get('chamcong/update/{maChamCong}', [ChamCongController::class, 'update']);
+Route::post('chamcong/update-post/{maChamCong}', [ChamCongController::class, 'updatePost']);
+Route::get('chamcong/delete/{maChamCong}', [ChamCongController::class, 'delete']);
+Route::get('chamcong/search', [ChamCongController::class, 'search']);
+Route::get('chamcong/detail/{maChamCong}', [ChamCongController::class, 'detail']);
+
+use App\Http\Controllers\Admin\TinhLuongController;
+Route::get('tinhluong', [TinhLuongController::class, 'index']);
+Route::get('tinhluong/create', [TinhLuongController::class, 'create']);
+Route::post('tinhluong/create-post', [TinhLuongController::class, 'createPost']);
+Route::get('tinhluong/update/{maTinhLuong}', [TinhLuongController::class, 'update']);
+Route::post('tinhluong/update-post/{maTinhLuong}', [TinhLuongController::class, 'updatePost']);
+Route::get('tinhluong/delete/{maTinhLuong}', [TinhLuongController::class, 'delete']);
+Route::get('tinhluong/detail/{maTinhLuong}', [TinhLuongController::class, 'detail']);
+Route::post('tinhluong/tinh', [TinhLuongController::class, 'tinhLuong']);
+
 

@@ -22,6 +22,15 @@ class NhanVien extends Model
         "gioiTinh",
         "maChucVu",
         "ngayVaoLam",
+        "luongCoBan",
+        "phuCap",
         "trangThai"
     ];
+
+    protected $casts = [
+    'ngaySinh' => 'date',
+    'ngayVaoLam' => 'date',
+    'ngayTao' => 'datetime',
+    'ngayCapNhat' => 'datetime',
+];
 }

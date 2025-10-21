@@ -37,9 +37,11 @@ class NhanVienController extends Controller
             'maChucVu' => 'nullable|integer|exists:ChucVu,maChucVu',
             'ngayVaoLam' => 'nullable|date',
             'trangThai' => 'nullable|in:0,1',
+            'luongCoBan' => 'nullable|numeric|min:0',
+            'phuCap' => 'nullable|numeric|min:0',
         ]);
 
-        // Sinh maNhanVien tự động
+        // Sinh mã nhân viên tự động
         $lastNhanVien = NhanVien::orderBy('maNhanVien', 'desc')->first();
         if ($lastNhanVien) {
             $lastNumber = (int) str_replace('NV', '', $lastNhanVien->maNhanVien);
@@ -50,8 +52,18 @@ class NhanVienController extends Controller
         $maNhanVien = 'NV' . $newNumber;
 
         $data = $request->only(
-            'maNguoiDung', 'hoTen', 'soDienThoai', 'email', 'diaChi',
-            'ngaySinh', 'gioiTinh', 'maChucVu', 'ngayVaoLam', 'trangThai'
+            'maNguoiDung',
+            'hoTen',
+            'soDienThoai',
+            'email',
+            'diaChi',
+            'ngaySinh',
+            'gioiTinh',
+            'maChucVu',
+            'ngayVaoLam',
+            'trangThai',
+            'luongCoBan',
+            'phuCap'
         );
         $data['maNhanVien'] = $maNhanVien;
         $data['ngayTao'] = now();
@@ -87,11 +99,23 @@ class NhanVienController extends Controller
             'maChucVu' => 'nullable|integer|exists:ChucVu,maChucVu',
             'ngayVaoLam' => 'nullable|date',
             'trangThai' => 'nullable|in:0,1',
+            'luongCoBan' => 'nullable|numeric|min:0',
+            'phuCap' => 'nullable|numeric|min:0',
         ]);
 
         $data = $request->only(
-            'maNguoiDung', 'hoTen', 'soDienThoai', 'email', 'diaChi',
-            'ngaySinh', 'gioiTinh', 'maChucVu', 'ngayVaoLam', 'trangThai'
+            'maNguoiDung',
+            'hoTen',
+            'soDienThoai',
+            'email',
+            'diaChi',
+            'ngaySinh',
+            'gioiTinh',
+            'maChucVu',
+            'ngayVaoLam',
+            'trangThai',
+            'luongCoBan',
+            'phuCap'
         );
         $data['ngayCapNhat'] = now();
 
@@ -124,5 +148,11 @@ class NhanVienController extends Controller
         $data->appends(['keyword' => $keyword]);
 
         return view("admin.nhanvien.read", compact("data"));
+    }
+
+    public function detail($maNhanVien)
+    {
+        $record = NhanVien::findOrFail($maNhanVien);
+        return view('admin.nhanvien.detail', compact('record'));
     }
 }
