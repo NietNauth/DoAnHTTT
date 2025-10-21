@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hospital ERP 108</title>
+  <title>Quản lý mắt kính</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <script>
@@ -43,10 +43,31 @@
           </a>
         </li>
         <li>
+          <a href="{{ url('/nhanvien') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">work</span>
+            Nhân viên
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('/khachhang') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">groups</span>
+            Khách hàng
+          </a>
+        </li>
+        <li>
           <a href="{{ url('/nguoidung') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">person</span>
             Người dùng
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('/chucvu') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">badge</span>
+            Chức vụ
           </a>
         </li>
         <li>
