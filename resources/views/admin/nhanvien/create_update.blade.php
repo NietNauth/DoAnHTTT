@@ -78,7 +78,7 @@
             <div class="flex-1 mb-4 md:mb-0">
                 <label class="block mb-1 font-medium">Ngày sinh</label>
                 <input type="date" name="ngaySinh" class="border rounded w-full px-3 py-2"
-                    value="{{ old('ngaySinh', isset($record) ? $record->ngaySinh->format('Y-m-d') : '') }}">
+                    value="{{ old('ngaySinh', isset($record) ? optional($record->ngaySinh)->format('Y-m-d') : '') }}">
                 @error('ngaySinh')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
@@ -120,7 +120,7 @@
             <div class="flex-1">
                 <label class="block mb-1 font-medium">Ngày vào làm</label>
                 <input type="date" name="ngayVaoLam" class="border rounded w-full px-3 py-2"
-                    value="{{ old('ngayVaoLam', isset($record) && $record->ngayVaoLam ? $record->ngayVaoLam->format('Y-m-d') : '') }}">
+                    value="{{ old('ngayVaoLam', isset($record) ? optional($record->ngayVaoLam)->format('Y-m-d') : '') }}">
                 @error('ngayVaoLam')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
