@@ -36,24 +36,25 @@
     <nav class="mt-4">
       <ul class="space-y-1">
         <li>
-          <a href="{{ url('/') }}"
+          <a href="{{ url('admin/') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">dashboard</span>
             Trang chủ
           </a>
         </li>
+
         <li
-          x-data="{ open: {{ request()->is('sanpham*') || request()->is('sanpham-hinhanh*') || request()->is('sanpham-thuoctinh*') ? 'true' : 'false' }} }">
+          x-data="{ open: {{ request()->is('admin/sanpham*') || request()->is('admin/sanpham-hinhanh*') || request()->is('admin/sanpham-thuoctinh*') ? 'true' : 'false' }} }">
 
           <!-- Menu cha -->
           <button @click="open = !open" class="flex items-center justify-between w-full text-left px-4 py-2 rounded-lg transition
-    {{ request()->is('sanpham*') || request()->is('sanpham-hinhanh*') || request()->is('sanpham-thuoctinh*')
+    {{ request()->is('admin/sanpham*') || request()->is('admin/sanpham-hinhanh*') || request()->is('admin/sanpham-thuoctinh*')
   ? 'bg-indigo-50 text-accent font-medium'
   : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
 
             <div class="flex items-center">
               <span
-                class="material-icons mr-3 shrink-0 {{ request()->is('sanpham*') || request()->is('sanpham-hinhanh*') || request()->is('sanpham-thuoctinh*') ? 'text-accent' : '' }}">
+                class="material-icons mr-3 shrink-0 {{ request()->is('admin/sanpham*') || request()->is('admin/sanpham-hinhanh*') || request()->is('admin/sanpham-thuoctinh*') ? 'text-accent' : '' }}">
                 inventory
               </span>
               <span class="whitespace-normal break-words leading-snug truncate">
@@ -70,11 +71,11 @@
           <!-- Menu con -->
           <ul x-show="open" x-collapse class="pl-8 mt-1 space-y-1">
             <li>
-              <a href="{{ url('sanpham') }}" class="flex items-center px-3 py-2 rounded-lg transition
-    {{ request()->is('sanpham') || request()->is('sanpham/*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
+              <a href="{{ url('admin/sanpham') }}" class="flex items-center px-3 py-2 rounded-lg transition
+    {{ request()->is('admin/sanpham') || request()->is('admin/sanpham/*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
   : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
                 <span
-                  class="material-icons mr-3 text-sm {{ request()->is('sanpham') || request()->is('sanpham/*') ? 'text-accent' : '' }}">
+                  class="material-icons mr-3 text-sm {{ request()->is('admin/sanpham') || request()->is('admin/sanpham/*') ? 'text-accent' : '' }}">
                   inventory_2
                 </span>
                 Sản phẩm
@@ -82,10 +83,10 @@
             </li>
 
             <li>
-              <a href="{{ url('sanpham-hinhanh') }}" class="flex items-center px-3 py-2 rounded-lg transition
-    {{ request()->is('sanpham-hinhanh*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
+              <a href="{{ url('admin/sanpham-hinhanh') }}" class="flex items-center px-3 py-2 rounded-lg transition
+    {{ request()->is('admin/sanpham-hinhanh*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
   : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
-                <span class="material-icons mr-3 text-sm {{ request()->is('sanpham-hinhanh*') ? 'text-accent' : '' }}">
+                <span class="material-icons mr-3 text-sm {{ request()->is('admin/sanpham-hinhanh*') ? 'text-accent' : '' }}">
                   image
                 </span>
                 Sản phẩm hình ảnh
@@ -93,11 +94,11 @@
             </li>
 
             <li>
-              <a href="{{ url('sanpham-thuoctinh') }}" class="flex items-center px-3 py-2 rounded-lg transition
-    {{ request()->is('sanpham-thuoctinh*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
+              <a href="{{ url('admin/sanpham-thuoctinh') }}" class="flex items-center px-3 py-2 rounded-lg transition
+    {{ request()->is('admin/sanpham-thuoctinh*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
   : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
                 <span
-                  class="material-icons mr-3 text-sm {{ request()->is('sanpham-thuoctinh*') ? 'text-accent' : '' }}">
+                  class="material-icons mr-3 text-sm {{ request()->is('admin/sanpham-thuoctinh*') ? 'text-accent' : '' }}">
                   tune
                 </span>
                 Sản phẩm thuộc tính
@@ -105,64 +106,65 @@
             </li>
           </ul>
         </li>
+
         <li>
-          <a href="{{ url('/nhacc') }}"
+          <a href="{{ url('admin/nhacc') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">store</span>
             Nhà Cung Cấp
           </a>
         </li>
         <li>
-          <a href="{{ url('/danhmuc') }}"
+          <a href="{{ url('admin/danhmuc') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">category</span>
             Danh Mục
           </a>
         </li>
         <li>
-          <a href="{{ url('/tinhluong') }}"
+          <a href="{{ url('admin/tinhluong') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">payments</span>
             Tính Lương
           </a>
         </li>
         <li>
-          <a href="{{ url('/chamcong') }}"
+          <a href="{{ url('admin/chamcong') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">schedule</span>
             Chấm Công
           </a>
         </li>
         <li>
-          <a href="{{ url('/nhanvien') }}"
+          <a href="{{ url('admin/nhanvien') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">work</span>
             Nhân viên
           </a>
         </li>
         <li>
-          <a href="{{ url('/khachhang') }}"
+          <a href="{{ url('admin/khachhang') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">groups</span>
             Khách hàng
           </a>
         </li>
         <li>
-          <a href="{{ url('/nguoidung') }}"
+          <a href="{{ url('admin/nguoidung') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">person</span>
             Người dùng
           </a>
         </li>
         <li>
-          <a href="{{ url('/chucvu') }}"
+          <a href="{{ url('admin/chucvu') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">badge</span>
             Chức vụ
           </a>
         </li>
         <li>
-          <a href="{{ url('/vaitro') }}"
+          <a href="{{ url('admin/vaitro') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
             <span class="material-icons mr-3">supervisor_account</span>
             Vai trò
