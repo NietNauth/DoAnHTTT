@@ -42,6 +42,83 @@
             Trang chủ
           </a>
         </li>
+        <li
+          x-data="{ open: {{ request()->is('sanpham*') || request()->is('sanpham-hinhanh*') || request()->is('sanpham-thuoctinh*') ? 'true' : 'false' }} }">
+
+          <!-- Menu cha -->
+          <button @click="open = !open" class="flex items-center justify-between w-full text-left px-4 py-2 rounded-lg transition
+    {{ request()->is('sanpham*') || request()->is('sanpham-hinhanh*') || request()->is('sanpham-thuoctinh*')
+  ? 'bg-indigo-50 text-accent font-medium'
+  : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
+
+            <div class="flex items-center">
+              <span
+                class="material-icons mr-3 shrink-0 {{ request()->is('sanpham*') || request()->is('sanpham-hinhanh*') || request()->is('sanpham-thuoctinh*') ? 'text-accent' : '' }}">
+                inventory
+              </span>
+              <span class="whitespace-normal break-words leading-snug truncate">
+                Quản lý sản phẩm
+              </span>
+            </div>
+
+            <span class="material-icons transition-transform duration-200"
+              :class="open ? 'rotate-180 text-accent' : ''">
+              expand_more
+            </span>
+          </button>
+
+          <!-- Menu con -->
+          <ul x-show="open" x-collapse class="pl-8 mt-1 space-y-1">
+            <li>
+              <a href="{{ url('sanpham') }}" class="flex items-center px-3 py-2 rounded-lg transition
+    {{ request()->is('sanpham') || request()->is('sanpham/*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
+  : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
+                <span
+                  class="material-icons mr-3 text-sm {{ request()->is('sanpham') || request()->is('sanpham/*') ? 'text-accent' : '' }}">
+                  inventory_2
+                </span>
+                Sản phẩm
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('sanpham-hinhanh') }}" class="flex items-center px-3 py-2 rounded-lg transition
+    {{ request()->is('sanpham-hinhanh*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
+  : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
+                <span class="material-icons mr-3 text-sm {{ request()->is('sanpham-hinhanh*') ? 'text-accent' : '' }}">
+                  image
+                </span>
+                Sản phẩm hình ảnh
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('sanpham-thuoctinh') }}" class="flex items-center px-3 py-2 rounded-lg transition
+    {{ request()->is('sanpham-thuoctinh*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
+  : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
+                <span
+                  class="material-icons mr-3 text-sm {{ request()->is('sanpham-thuoctinh*') ? 'text-accent' : '' }}">
+                  tune
+                </span>
+                Sản phẩm thuộc tính
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{ url('/nhacc') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">store</span>
+            Nhà Cung Cấp
+          </a>
+        </li>
+        <li>
+          <a href="{{ url('/danhmuc') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">category</span>
+            Danh Mục
+          </a>
+        </li>
         <li>
           <a href="{{ url('/tinhluong') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
