@@ -9,10 +9,11 @@ class CheckLogin
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->session()->has('maNguoiDung')) {
-            return redirect()->route('login')->with('error', 'Bạn phải đăng nhập');
+        if (!$request->session()->has('admin_logged_in')) {
+            return redirect()->to('admin/login')->with('error', 'Bạn phải đăng nhập');
         }
 
         return $next($request);
     }
+
 }

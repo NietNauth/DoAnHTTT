@@ -42,7 +42,7 @@
                                 <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-[#55d5d2] transition-colors">
                                     {{ $item->tenSanPham }}
                                 </h3>
-                                <p class="text-sm text-gray-500 mb-3 line-clamp-2">{{ $item->moTa }}</p>
+                                <!-- <p class="text-sm text-gray-500 mb-3 line-clamp-2">{{ $item->moTa }}</p> -->
 
                                 {{-- Màu sắc --}}
                                 <div class="flex gap-1.5 mb-3">
@@ -101,7 +101,7 @@
                                             <h3 class="text-base font-bold text-gray-900 mb-1 group-hover:text-[#55d5d2] transition-colors">
                                                 {{ $product->tenSanPham }}
                                             </h3>
-                                            <p class="text-sm text-gray-500 mb-3 line-clamp-2">{{ $product->moTa }}</p>
+                                            <!-- <p class="text-sm text-gray-500 mb-3 line-clamp-2">{{ $product->moTa }}</p> -->
 
                                             <div class="flex gap-1.5 mb-3">
                                                 @if (!empty($product->mauSac))

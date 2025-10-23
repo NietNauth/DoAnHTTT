@@ -3,6 +3,8 @@
 namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Admin\SanPham;
+
 
 class SanPhamThuocTinh extends Model
 {
@@ -18,7 +20,13 @@ class SanPhamThuocTinh extends Model
     ];
 
     protected $casts = [
-    'ngayTao' => 'datetime',
-    'ngayCapNhat' => 'datetime',
+        'ngayTao' => 'datetime',
+        'ngayCapNhat' => 'datetime',
     ];
+
+    public function sanPham()
+    {
+        return $this->belongsTo(SanPham::class, 'maSanPham', 'maSanPham');
+    }
+
 }

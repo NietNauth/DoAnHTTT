@@ -15,6 +15,7 @@ class SanPham extends Model
         "maSanPham",
         "tenSanPham",
         "moTa",
+        "giaNhap",
         "giaGoc",
         "maDanhMuc",
         "maNCC",
@@ -22,7 +23,12 @@ class SanPham extends Model
     ];
 
     protected $casts = [
-    'ngayTao' => 'datetime',
-    'ngayCapNhat' => 'datetime',
+        'ngayTao' => 'datetime',
+        'ngayCapNhat' => 'datetime',
     ];
+
+    public function hinhAnhs()
+    {
+        return $this->hasMany(SanPhamHinhAnh::class, 'maSanPham', 'maSanPham')->orderBy('thuTu');
+    }
 }

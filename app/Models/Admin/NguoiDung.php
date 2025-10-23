@@ -2,9 +2,9 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class NguoiDung extends Model
+class NguoiDung extends Authenticatable
 {
     protected $table = "NguoiDung";
     protected $primaryKey = "maNguoiDung";
@@ -16,4 +16,21 @@ class NguoiDung extends Model
         "matKhau",
         "vaiTro",
     ];
+
+    // Tên cột mật khẩu
+    public function getAuthPassword()
+    {
+        return $this->matKhau;
+    }
+
+    // Quan hệ với bảng VaiTro
+    public function role()
+    {
+        return $this->belongsTo(VaiTro::class, 'vaiTro', 'maVaiTro');
+    }
+
+    public function khachHang()
+    {
+        return $this->hasOne(KhachHang::class, 'maNguoiDung', 'maNguoiDung');
+    }
 }

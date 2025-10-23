@@ -24,6 +24,7 @@
                 <tr>
                     <th class="px-6 py-3">Mã SP</th>
                     <th class="px-6 py-3">Tên sản phẩm</th>
+                    <th class="px-6 py-3">Giá nhập</th>
                     <th class="px-6 py-3">Giá gốc</th>
                     <th class="px-6 py-3">Danh mục</th>
                     <th class="px-6 py-3">Nhà cung cấp</th>
@@ -38,6 +39,7 @@
                     <tr class="border-b hover:bg-gray-100 transition">
                         <td class="px-6 py-3">{{ $sp->maSanPham }}</td>
                         <td class="px-6 py-3">{{ $sp->tenSanPham }}</td>
+                        <td class="px-6 py-3">{{ number_format($sp->giaNhap, 0, ',', '.') }} VNĐ</td>
                         <td class="px-6 py-3">{{ number_format($sp->giaGoc, 0, ',', '.') }} VNĐ</td>
                         <td class="px-6 py-3">{{ App\Models\Admin\DanhMuc::find($sp->maDanhMuc)->tenDanhMuc ?? '—' }}</td>
                         <td class="px-6 py-3">{{ App\Models\Admin\NhaCC::find($sp->maNCC)->tenNCC ?? '—' }}</td>

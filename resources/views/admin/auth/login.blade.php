@@ -12,18 +12,27 @@
     <div class="w-full max-w-md bg-white p-8 rounded shadow">
         <h1 class="text-2xl font-bold mb-6 text-center">Đăng nhập</h1>
 
+        {{-- Thông báo thành công --}}
         @if(session('success'))
             <div class="bg-green-100 text-green-700 px-4 py-2 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif
 
-        <form action="{{ route('login.post') }}" method="POST" class="space-y-4">
+        {{-- Thông báo lỗi --}}
+        @if($errors->any())
+            <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
+        {{-- Form đăng nhập --}}
+        <form action="{{ url('admin/login') }}" method="POST" class="space-y-4">
             @csrf
             <div>
                 <label class="block mb-1 font-medium">Tên đăng nhập</label>
                 <input type="text" name="tenDangNhap" class="border rounded w-full px-3 py-2"
-                    value="{{ old('tenDangNhap') }}">
+                       value="{{ old('tenDangNhap') }}" required autofocus>
                 @error('tenDangNhap')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
@@ -31,14 +40,16 @@
 
             <div>
                 <label class="block mb-1 font-medium">Mật khẩu</label>
-                <input type="password" name="matKhau" class="border rounded w-full px-3 py-2">
+                <input type="password" name="matKhau" class="border rounded w-full px-3 py-2" required>
                 @error('matKhau')
                     <div class="text-red-600 text-sm">{{ $message }}</div>
                 @enderror
             </div>
 
-            <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Đăng
-                nhập</button>
+            <button type="submit"
+                class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700 transition">
+                Đăng nhập
+            </button>
         </form>
     </div>
 </body>

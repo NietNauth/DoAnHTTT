@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckLogin;
-use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\VaiTroController;
 use App\Http\Controllers\Admin\ChucVuController;
 use App\Http\Controllers\Admin\NguoiDungController;
@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\NhaCCController;
 use App\Http\Controllers\Admin\SanPhamController;
 use App\Http\Controllers\Admin\SanPhamHinhAnhController;
 use App\Http\Controllers\Admin\SanPhamThuocTinhController;
+use App\Http\Controllers\Admin\DonHangController;
+use App\Http\Controllers\Index\AuthController;
 use App\Http\Controllers\Index\HomeController;
 use App\Http\Controllers\Index\ProductsController;
 use App\Http\Controllers\Index\CartController;
@@ -33,9 +35,9 @@ use App\Http\Controllers\Index\CartController;
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [AuthController::class, 'login'])->name('login.post');
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('login', [LoginController::class, 'showLoginForm']);
+    Route::post('login', [LoginController::class, 'login']);
+    Route::get('logout', [LoginController::class, 'logout']);
 
     Route::middleware([CheckLogin::class])->group(function () {
         Route::get('/', function () {
@@ -155,15 +157,34 @@ Route::prefix('admin')->group(function () {
         Route::get('sanpham-thuoctinh/add-so-luong/{maSPTT}', [SanPhamThuocTinhController::class, 'addSoLuong']);
         Route::post('sanpham-thuoctinh/add-so-luong/{maSPTT}', [SanPhamThuocTinhController::class, 'addSoLuongPost']);
 
+        Route::get('donhang', [DonHangController::class, 'index']);
+        Route::get('donhang/create', [DonHangController::class, 'create']);
+        Route::post('donhang/create-post', [DonHangController::class, 'createPost']);
+        Route::get('donhang/update/{maDonHang}', [DonHangController::class, 'update']);
+        Route::post('donhang/update-post/{maDonHang}', [DonHangController::class, 'updatePost']);
+        Route::get('donhang/delete/{maDonHang}', [DonHangController::class, 'delete']);
+        Route::get('donhang/search', [DonHangController::class, 'search']);
+        Route::get('donhang/detail/{maDonHang}', [DonHangController::class, 'detail']);
+
+
     });
 });
+
+// Đăng nhập
+Route::get('login', [AuthController::class, 'showLogin']);
+Route::post('login', [AuthController::class, 'login']);
+
+// Đăng xuất
+Route::post('logout', [AuthController::class, 'logout']);
+
+// Đăng ký (nếu cần)
+Route::get('register', [AuthController::class, 'showRegister']);
+Route::post('register', [AuthController::class, 'register']);
 
 Route::get("", [HomeController::class, 'index']);
 Route::get('products/detail/{id}', [ProductsController::class, 'detail']);
 Route::get('products/category/{maDanhMuc}', [ProductsController::class, 'category']);
 Route::get('products/all', [ProductsController::class, 'allProducts']);
-
-
 
 Route::prefix('cart')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('cart');
@@ -171,10 +192,17 @@ Route::prefix('cart')->group(function () {
     Route::post('/buy', [CartController::class, 'buy'])->name('cart.buy');
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
 
-    // Chuyển remove và clear sang POST
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::post('/checkout/process', [CartController::class, 'processCheckout'])->name('cart.processCheckout');
+
 });
+
+use App\Http\Controllers\Index\OrderController;
+Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('orders.myOrders');
+Route::get('/my-orders/{maDonHang}', [OrderController::class, 'orderDetail'])->name('orders.detail');
+
 
 
 

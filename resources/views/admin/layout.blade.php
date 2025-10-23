@@ -102,12 +102,18 @@
                   class="material-icons mr-3 text-sm {{ request()->is('admin/sanpham-thuoctinh*') ? 'text-accent' : '' }}">
                   tune
                 </span>
-                Sản phẩm thuộc tính
+                Sản phẩm tồn kho
               </a>
             </li>
           </ul>
         </li>
-
+        <li>
+          <a href="{{ url('admin/donhang') }}"
+            class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
+            <span class="material-icons mr-3">shopping_cart</span>
+            Đơn Hàng
+          </a>
+        </li>
         <li>
           <a href="{{ url('admin/nhacc') }}"
             class="flex items-center px-4 py-2 text-textSub hover:text-accent hover:bg-indigo-50 rounded-lg transition">
@@ -191,11 +197,10 @@
           Xin chào, <span class="font-medium">{{ session('tenDangNhap') ?? 'Người dùng' }}</span>
           (<span>{{ session('vaiTro') == 1 ? 'Admin' : 'Nhân viên' }}</span>)
         </div>
-        <img src="images/khachhang.jpg" alt="Avatar"
-          class="w-10 h-10 rounded-full object-cover border border-gray-300">
+        <img src="images/khachhang.jpg" alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-gray-300">
 
         <!-- Logout button -->
-        <form action="{{ route('logout') }}" method="GET">
+        <form action="{{ url('admin/logout') }}" method="GET">
           @csrf
           <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">
             Đăng xuất

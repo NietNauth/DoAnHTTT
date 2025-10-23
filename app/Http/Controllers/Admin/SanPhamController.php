@@ -20,7 +20,7 @@ class SanPhamController extends Controller
     {
         $action = url('admin/sanpham/create-post');
 
-        // Nếu muốn dropdown danh mục và nhà cung cấp
+        // Dropdown danh mục và nhà cung cấp
         $danhMucList = \App\Models\Admin\DanhMuc::where('trangThai', 1)->get();
         $nhaCCList = \App\Models\Admin\NhaCC::where('trangThai', 1)->get();
 
@@ -35,12 +35,13 @@ class SanPhamController extends Controller
             'tenSanPham' => 'required|string|max:255',
             'moTa' => 'nullable|string',
             'giaGoc' => 'required|numeric|min:0',
+            'giaNhap' => 'required|numeric|min:0', // <-- thêm giaNhap
             'maDanhMuc' => 'required|string|exists:DanhMuc,maDanhMuc',
             'maNCC' => 'required|string|exists:NhaCungCap,maNCC',
             'trangThai' => 'nullable|in:0,1',
         ]);
 
-        $data = $request->only('maSanPham', 'tenSanPham', 'moTa', 'giaGoc', 'maDanhMuc', 'maNCC', 'trangThai');
+        $data = $request->only('maSanPham', 'tenSanPham', 'moTa', 'giaGoc', 'giaNhap', 'maDanhMuc', 'maNCC', 'trangThai');
         $data['ngayTao'] = now();
         $data['ngayCapNhat'] = now();
 
@@ -71,12 +72,13 @@ class SanPhamController extends Controller
             'tenSanPham' => 'required|string|max:255',
             'moTa' => 'nullable|string',
             'giaGoc' => 'required|numeric|min:0',
+            'giaNhap' => 'required|numeric|min:0', // <-- thêm giaNhap
             'maDanhMuc' => 'required|string|exists:DanhMuc,maDanhMuc',
             'maNCC' => 'required|string|exists:NhaCungCap,maNCC',
             'trangThai' => 'nullable|in:0,1',
         ]);
 
-        $data = $request->only('tenSanPham', 'moTa', 'giaGoc', 'maDanhMuc', 'maNCC', 'trangThai');
+        $data = $request->only('tenSanPham', 'moTa', 'giaGoc', 'giaNhap', 'maDanhMuc', 'maNCC', 'trangThai');
         $data['ngayCapNhat'] = now();
 
         $sanPham->update($data);
@@ -110,5 +112,4 @@ class SanPhamController extends Controller
 
         return view("admin.sanpham.read", compact("data"));
     }
-
 }
