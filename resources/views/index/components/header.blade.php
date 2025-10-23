@@ -134,7 +134,7 @@
                     <span class="material-icons text-[#55d5d2] text-3xl">shopping_cart</span>
                     @if($cartCount > 0)
                         <span
-                            class="absolute -top-1 -right-2 bg-[#55d5d2] text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+                            class="absolute -top-1 -right-2 bg-[#55d5d2] text-white text-xs font-bold px-1.5 py-0.5 rounded-full " onclick="window.location=' {{ url('cart') }}'">
                             {{ $cartCount }}
                         </span>
                     @endif
