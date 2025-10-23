@@ -19,7 +19,7 @@ class SanPhamThuocTinhController extends Controller
     // Form tạo thuộc tính mới
     public function create()
     {
-        $action = url('sanpham-thuoctinh/create-post');
+        $action = url('admin/sanpham-thuoctinh/create-post');
         $sanPhamList = \App\Models\Admin\SanPham::all();
         return view("admin.sanpham_thuoctinh.create_update", compact('action', 'sanPhamList'));
     }
@@ -35,8 +35,8 @@ class SanPhamThuocTinhController extends Controller
 
         // Kiểm tra màu trùng
         $exists = SanPhamThuocTinh::where('maSanPham', $request->maSanPham)
-                    ->where('mauSac', $request->mauSac)
-                    ->exists();
+            ->where('mauSac', $request->mauSac)
+            ->exists();
 
         if ($exists) {
             return back()->withErrors(['mauSac' => 'Màu này đã tồn tại cho sản phẩm này'])->withInput();
@@ -48,7 +48,7 @@ class SanPhamThuocTinhController extends Controller
 
         SanPhamThuocTinh::create($data);
 
-        return redirect()->to('sanpham-thuoctinh')
+        return redirect()->to('admin/sanpham-thuoctinh')
             ->with('success', 'Thêm thuộc tính thành công');
     }
 
@@ -56,7 +56,7 @@ class SanPhamThuocTinhController extends Controller
     public function update($maSPTT)
     {
         $record = SanPhamThuocTinh::findOrFail($maSPTT);
-        $action = url("sanpham-thuoctinh/update-post/$maSPTT");
+        $action = url("admin/sanpham-thuoctinh/update-post/$maSPTT");
         $sanPhamList = \App\Models\Admin\SanPham::all();
         return view("admin.sanpham_thuoctinh.create_update", compact('record', 'action', 'sanPhamList'));
     }
@@ -74,9 +74,9 @@ class SanPhamThuocTinhController extends Controller
 
         // Kiểm tra màu trùng
         $exists = SanPhamThuocTinh::where('maSanPham', $request->maSanPham)
-                    ->where('mauSac', $request->mauSac)
-                    ->where('maSPTT', '<>', $maSPTT)
-                    ->exists();
+            ->where('mauSac', $request->mauSac)
+            ->where('maSPTT', '<>', $maSPTT)
+            ->exists();
 
         if ($exists) {
             return back()->withErrors(['mauSac' => 'Màu này đã tồn tại cho sản phẩm này'])->withInput();
@@ -87,7 +87,7 @@ class SanPhamThuocTinhController extends Controller
 
         $record->update($data);
 
-        return redirect('sanpham-thuoctinh')->with('success', 'Cập nhật thuộc tính thành công');
+        return redirect('admin/sanpham-thuoctinh')->with('success', 'Cập nhật thuộc tính thành công');
     }
 
     // Xóa thuộc tính
@@ -96,7 +96,7 @@ class SanPhamThuocTinhController extends Controller
         $record = SanPhamThuocTinh::findOrFail($maSPTT);
         $record->delete();
 
-        return redirect('sanpham-thuoctinh')->with('success', 'Xóa thuộc tính thành công');
+        return redirect('admin/sanpham-thuoctinh')->with('success', 'Xóa thuộc tính thành công');
     }
 
     // Tìm kiếm thuộc tính
@@ -107,7 +107,7 @@ class SanPhamThuocTinhController extends Controller
         $data = SanPhamThuocTinh::query()
             ->when($keyword, function ($query, $keyword) {
                 $query->where('maSanPham', 'LIKE', "%$keyword%")
-                      ->orWhere('mauSac', 'LIKE', "%$keyword%");
+                    ->orWhere('mauSac', 'LIKE', "%$keyword%");
             })
             ->orderBy("maSanPham", "desc")
             ->paginate(10);
@@ -116,4 +116,31 @@ class SanPhamThuocTinhController extends Controller
 
         return view("admin.sanpham_thuoctinh.read", compact("data"));
     }
+
+    public function addSoLuong($maSPTT)
+    {
+        $record = SanPhamThuocTinh::findOrFail($maSPTT); // Lấy thông tin thuộc tính
+
+        $action = url("admin/sanpham-thuoctinh/add-so-luong/$maSPTT"); // URL submit POST
+
+        return view("admin.sanpham_thuoctinh.add-so-luong", compact('record', 'action'));
+    }
+
+    public function addSoLuongPost(Request $request, $maSPTT)
+    {
+        $request->validate([
+            'soLuongThem' => 'required|integer|min:1', // số lượng muốn thêm
+        ]);
+
+        $record = SanPhamThuocTinh::findOrFail($maSPTT);
+
+        // Cộng số lượng hiện tại với số lượng thêm
+        $record->soLuong += $request->soLuongThem;
+        $record->ngayCapNhat = now();
+
+        $record->save();
+
+        return redirect('admin/sanpham-thuoctinh')->with('success', 'Cập nhật số lượng thành công');
+    }
+
 }

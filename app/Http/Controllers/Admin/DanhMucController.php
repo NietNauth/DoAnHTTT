@@ -18,7 +18,7 @@ class DanhMucController extends Controller
     // Form tạo danh mục mới
     public function create()
     {
-        $action = url('danhmuc/create-post');
+        $action = url('admin/danhmuc/create-post');
         return view("admin.danhmuc.create_update", compact('action'));
     }
 
@@ -48,7 +48,7 @@ class DanhMucController extends Controller
 
         DanhMuc::create($data);
 
-        return redirect()->to('danhmuc')
+        return redirect()->to('admin/danhmuc')
             ->with('success', 'Thêm danh mục thành công');
     }
 
@@ -56,7 +56,7 @@ class DanhMucController extends Controller
     public function update($maDanhMuc)
     {
         $record = DanhMuc::findOrFail($maDanhMuc);
-        $action = url("danhmuc/update-post/$maDanhMuc");
+        $action = url("admin/danhmuc/update-post/$maDanhMuc");
         return view("admin.danhmuc.create_update", compact('record', 'action'));
     }
 
@@ -76,7 +76,7 @@ class DanhMucController extends Controller
 
         $danhMuc->update($data);
 
-        return redirect('danhmuc')->with('success', 'Cập nhật danh mục thành công');
+        return redirect('admin/danhmuc')->with('success', 'Cập nhật danh mục thành công');
     }
 
     // Xóa danh mục
@@ -85,7 +85,7 @@ class DanhMucController extends Controller
         $danhMuc = DanhMuc::findOrFail($maDanhMuc);
         $danhMuc->delete();
 
-        return redirect('danhmuc')->with('success', 'Xóa danh mục thành công');
+        return redirect('admin/danhmuc')->with('success', 'Xóa danh mục thành công');
     }
 
     // Tìm kiếm danh mục

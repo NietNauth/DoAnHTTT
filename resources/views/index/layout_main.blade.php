@@ -14,15 +14,9 @@
   {{-- Include Header --}}
   @include('index.components.header')
 
-  {{-- Include Main Sections --}}
-  @include('index.components.slides')
-  @include('index.components.features')
   <main>
     @yield('content')
-  </main>
-  @include('index.components.testimonials')
-
-
+  </main> 
 
   {{-- Include Footer --}}
   @include('index.components.footer')

@@ -53,7 +53,7 @@ class TinhLuongController extends Controller
             ->where('TinhLuong.maTinhLuong', $maTinhLuong)
             ->firstOrFail();
 
-        $action = url("tinhluong/update-post/$maTinhLuong");
+        $action = url("admin/tinhluong/update-post/$maTinhLuong");
 
         return view('admin.tinhluong.update', compact('record', 'action'));
     }
@@ -84,7 +84,7 @@ class TinhLuongController extends Controller
 
         $tl->save();
 
-        return redirect()->to('tinhluong')->with('success', 'Cập nhật thưởng/phạt thành công');
+        return redirect()->to('admin/tinhluong')->with('success', 'Cập nhật thưởng/phạt thành công');
     }
 
 
@@ -110,7 +110,7 @@ class TinhLuongController extends Controller
             ->orderByDesc('thangNam')
             ->paginate(10);
 
-        return redirect('tinhluong')->with('success', 'Xóa bản ghi lương thành công');
+        return redirect('admin/tinhluong')->with('success', 'Xóa bản ghi lương thành công');
     }
 
 }

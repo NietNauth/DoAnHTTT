@@ -18,7 +18,7 @@ class NhanVienController extends Controller
 
     public function create()
     {
-        $action = url('nhanvien/create-post');
+        $action = url('admin/nhanvien/create-post');
         $nguoiDungList = NguoiDung::all();
         $chucVuList = ChucVu::all();
         return view("admin.nhanvien.create_update", compact('action', 'nguoiDungList', 'chucVuList'));
@@ -71,14 +71,14 @@ class NhanVienController extends Controller
 
         NhanVien::create($data);
 
-        return redirect()->to('nhanvien')
+        return redirect()->to('admin/nhanvien')
             ->with('success', 'Thêm nhân viên thành công');
     }
 
     public function update($maNhanVien)
     {
         $record = NhanVien::findOrFail($maNhanVien);
-        $action = url("nhanvien/update-post/$maNhanVien");
+        $action = url("admin/nhanvien/update-post/$maNhanVien");
         $nguoiDungList = NguoiDung::all();
         $chucVuList = ChucVu::all();
         return view("admin.nhanvien.create_update", compact('record', 'action', 'nguoiDungList', 'chucVuList'));
@@ -121,7 +121,7 @@ class NhanVienController extends Controller
 
         $nhanVien->update($data);
 
-        return redirect('nhanvien')->with('success', 'Cập nhật nhân viên thành công');
+        return redirect('admin/nhanvien')->with('success', 'Cập nhật nhân viên thành công');
     }
 
     public function delete($maNhanVien)
@@ -129,7 +129,7 @@ class NhanVienController extends Controller
         $nhanVien = NhanVien::findOrFail($maNhanVien);
         $nhanVien->delete();
 
-        return redirect('nhanvien')->with('success', 'Xóa nhân viên thành công');
+        return redirect('admin/nhanvien')->with('success', 'Xóa nhân viên thành công');
     }
 
     public function search(Request $request)

@@ -18,7 +18,7 @@ class SanPhamController extends Controller
     // Form tạo sản phẩm mới
     public function create()
     {
-        $action = url('sanpham/create-post');
+        $action = url('admin/sanpham/create-post');
 
         // Nếu muốn dropdown danh mục và nhà cung cấp
         $danhMucList = \App\Models\Admin\DanhMuc::where('trangThai', 1)->get();
@@ -46,7 +46,7 @@ class SanPhamController extends Controller
 
         SanPham::create($data);
 
-        return redirect()->to('sanpham')
+        return redirect()->to('admin/sanpham')
             ->with('success', 'Thêm sản phẩm thành công');
     }
 
@@ -54,7 +54,7 @@ class SanPhamController extends Controller
     public function update($maSanPham)
     {
         $record = SanPham::findOrFail($maSanPham);
-        $action = url("sanpham/update-post/$maSanPham");
+        $action = url("admin/sanpham/update-post/$maSanPham");
 
         $danhMucList = \App\Models\Admin\DanhMuc::where('trangThai', 1)->get();
         $nhaCCList = \App\Models\Admin\NhaCC::where('trangThai', 1)->get();
@@ -81,7 +81,7 @@ class SanPhamController extends Controller
 
         $sanPham->update($data);
 
-        return redirect('sanpham')->with('success', 'Cập nhật sản phẩm thành công');
+        return redirect('admin/sanpham')->with('success', 'Cập nhật sản phẩm thành công');
     }
 
     // Xóa sản phẩm
@@ -90,7 +90,7 @@ class SanPhamController extends Controller
         $sanPham = SanPham::findOrFail($maSanPham);
         $sanPham->delete();
 
-        return redirect('sanpham')->with('success', 'Xóa sản phẩm thành công');
+        return redirect('admin/sanpham')->with('success', 'Xóa sản phẩm thành công');
     }
 
     // Tìm kiếm sản phẩm

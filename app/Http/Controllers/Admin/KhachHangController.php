@@ -17,7 +17,7 @@ class KhachHangController extends Controller
 
     public function create()
     {
-        $action = url('khachhang/create-post');
+        $action = url('admin/khachhang/create-post');
         $nguoiDungList = NguoiDung::all(); // nếu KhachHang liên quan đến NguoiDung
         return view("admin.khachhang.create_update", compact('action', 'nguoiDungList'));
     }
@@ -46,7 +46,7 @@ class KhachHangController extends Controller
 
         KhachHang::create($data);
 
-        return redirect()->to('khachhang')
+        return redirect()->to('admin/khachhang')
             ->with('success', 'Thêm khách hàng thành công');
     }
 
@@ -54,7 +54,7 @@ class KhachHangController extends Controller
     public function update($maKhachHang)
     {
         $record = KhachHang::findOrFail($maKhachHang);
-        $action = url("khachhang/update-post/$maKhachHang");
+        $action = url("admin/khachhang/update-post/$maKhachHang");
         $nguoiDungList = NguoiDung::all(); // nếu cần chọn người dùng
         return view("admin.khachhang.create_update", compact('record', 'action', 'nguoiDungList'));
     }
@@ -74,7 +74,7 @@ class KhachHangController extends Controller
         $data = $request->only('maNguoiDung', 'hoTen', 'soDienThoai', 'email', 'diaChi');
         $khachHang->update($data);
 
-        return redirect('khachhang')->with('success', 'Cập nhật khách hàng thành công');
+        return redirect('admin/khachhang')->with('success', 'Cập nhật khách hàng thành công');
     }
 
     public function delete($maKhachHang)
@@ -82,7 +82,7 @@ class KhachHangController extends Controller
         $khachHang = KhachHang::findOrFail($maKhachHang);
         $khachHang->delete();
 
-        return redirect('khachhang')->with('success', 'Xóa khách hàng thành công');
+        return redirect('admin/khachhang')->with('success', 'Xóa khách hàng thành công');
     }
 
     public function search(Request $request)

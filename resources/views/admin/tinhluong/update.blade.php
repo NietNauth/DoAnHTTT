@@ -46,7 +46,7 @@
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
                 Cập nhật
             </button>
-            <a href="{{ url('tinhluong') }}" class="ml-2 text-gray-600 hover:underline">Hủy</a>
+            <a href="{{ url('admin/tinhluong') }}" class="ml-2 text-gray-600 hover:underline">Hủy</a>
         </div>
     </form>
 @endsection

@@ -1,4 +1,4 @@
-<div x-data="{ current: 0, slides: ['{{ asset('images/slide1.jpg') }}', '{{ asset('images/slide2.jpg') }}', '{{ asset('images/slide3.jpg') }}'] }"
+<div x-data="{ current: 0, slides: ['{{ asset('images/slide1.png') }}', '{{ asset('images/slide2.jpg') }}', '{{ asset('images/slide3.jpg') }}'] }"
      x-init="setInterval(() => current = (current + 1) % slides.length, 5000)"
      class="relative w-full h-[80vh] overflow-hidden bg-gray-100">
 

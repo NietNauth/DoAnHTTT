@@ -17,7 +17,7 @@ class NguoiDungController extends Controller
 
     public function create()
     {
-        $action = url('nguoidung/create-post');
+        $action = url('admin/nguoidung/create-post');
         $vaiTroList = VaiTro::all();
         return view("admin.nguoidung.create_update", compact('action', 'vaiTroList'));
     }
@@ -35,14 +35,14 @@ class NguoiDungController extends Controller
 
         NguoiDung::create($data);
 
-        return redirect()->to('nguoidung')
+        return redirect()->to('admin/nguoidung')
             ->with('success', 'Thêm người dùng thành công');
     }
 
     public function update($maNguoiDung)
     {
         $record = NguoiDung::findOrFail($maNguoiDung);
-        $action = url("nguoidung/update-post/$maNguoiDung");
+        $action = url("admin/nguoidung/update-post/$maNguoiDung");
         $vaiTroList = VaiTro::all(); // danh sách vai trò để chọn
         return view("admin.nguoidung.create_update", compact('record', 'action', 'vaiTroList'));
     }
@@ -64,7 +64,7 @@ class NguoiDungController extends Controller
 
         $nguoiDung->update($data);
 
-        return redirect('nguoidung')->with('success', 'Cập nhật người dùng thành công');
+        return redirect('admin/nguoidung')->with('success', 'Cập nhật người dùng thành công');
     }
 
     public function delete($maNguoiDung)
@@ -72,7 +72,7 @@ class NguoiDungController extends Controller
         $nguoiDung = NguoiDung::findOrFail($maNguoiDung);
         $nguoiDung->delete();
 
-        return redirect('nguoidung')->with('success', 'Xóa người dùng thành công');
+        return redirect('admin/nguoidung')->with('success', 'Xóa người dùng thành công');
     }
 
     public function search(Request $request)

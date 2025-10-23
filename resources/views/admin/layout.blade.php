@@ -57,7 +57,7 @@
                 class="material-icons mr-3 shrink-0 {{ request()->is('admin/sanpham*') || request()->is('admin/sanpham-hinhanh*') || request()->is('admin/sanpham-thuoctinh*') ? 'text-accent' : '' }}">
                 inventory
               </span>
-              <span class="whitespace-normal break-words leading-snug truncate">
+              <span class="whitespace-normal wrap-break-words leading-snug truncate">
                 Quản lý sản phẩm
               </span>
             </div>
@@ -86,7 +86,8 @@
               <a href="{{ url('admin/sanpham-hinhanh') }}" class="flex items-center px-3 py-2 rounded-lg transition
     {{ request()->is('admin/sanpham-hinhanh*') ? 'bg-indigo-50 text-accent font-medium border-l-4 border-accent'
   : 'text-textSub hover:text-accent hover:bg-indigo-50' }}">
-                <span class="material-icons mr-3 text-sm {{ request()->is('admin/sanpham-hinhanh*') ? 'text-accent' : '' }}">
+                <span
+                  class="material-icons mr-3 text-sm {{ request()->is('admin/sanpham-hinhanh*') ? 'text-accent' : '' }}">
                   image
                 </span>
                 Sản phẩm hình ảnh
@@ -175,18 +176,48 @@
   </aside>
 
   <!-- Main Content -->
-  <main class="flex-1 ml-64 p-8">
-    <div class="bg-white shadow-sm rounded-xl p-6 border border-gray-300">
-      <h2 class="text-2xl font-semibold text-accent mb-4 flex items-center gap-2">
-        <span class="material-icons text-accent">dashboard</span>
-        Trang quản trị
-      </h2>
+  <!-- Main Content Wrapper -->
+  <div class="flex-1 ml-64 flex flex-col min-h-screen">
 
-      <div class="text-textSub leading-relaxed">
-        @yield("do-du-lieu-tu-view")
+    <!-- Header -->
+    <header class="flex justify-between items-center bg-white shadow-sm border-b border-gray-300 px-6 h-16">
+      <div class="text-lg font-semibold text-accent">
+        Quản lý mắt kính
       </div>
-    </div>
-  </main>
+
+      <!-- User info -->
+      <div class="flex items-center space-x-4">
+        <div class="text-textSub text-sm">
+          Xin chào, <span class="font-medium">{{ session('tenDangNhap') ?? 'Người dùng' }}</span>
+          (<span>{{ session('vaiTro') == 1 ? 'Admin' : 'Nhân viên' }}</span>)
+        </div>
+        <img src="images/khachhang.jpg" alt="Avatar"
+          class="w-10 h-10 rounded-full object-cover border border-gray-300">
+
+        <!-- Logout button -->
+        <form action="{{ route('logout') }}" method="GET">
+          @csrf
+          <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">
+            Đăng xuất
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1 p-8 bg-lightBg">
+      <div class="bg-white shadow-sm rounded-xl p-6 border border-gray-300">
+        <h2 class="text-2xl font-semibold text-accent mb-4 flex items-center gap-2">
+          <span class="material-icons text-accent">dashboard</span>
+          Trang quản trị
+        </h2>
+
+        <div class="text-textSub leading-relaxed">
+          @yield("do-du-lieu-tu-view")
+        </div>
+      </div>
+    </main>
+  </div>
 
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

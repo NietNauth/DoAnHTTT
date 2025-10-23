@@ -6,7 +6,7 @@
     <div class="mb-4 flex items-center space-x-4">
 
         {{-- Form tìm kiếm --}}
-        <form action="{{ url('tinhluong/search') }}" method="GET" class="flex space-x-2">
+        <form action="{{ url('admin/tinhluong/search') }}" method="GET" class="flex space-x-2">
             <input type="text" name="keyword" placeholder="Nhập mã hoặc tên nhân viên..."
                 class="border px-3 py-2 rounded w-64" value="{{ request('keyword') }}">
             <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">
@@ -15,7 +15,7 @@
         </form>
 
         {{-- Form chọn tháng để tính lương --}}
-        <form action="{{ url('tinhluong/tinh') }}" method="POST" class="flex space-x-2 items-center">
+        <form action="{{ url('admin/tinhluong/tinh') }}" method="POST" class="flex space-x-2 items-center">
             @csrf
             <input type="month" name="thang" class="border px-3 py-2 rounded"
                 value="{{ old('thang', date('Y-m')) }}">
@@ -75,15 +75,15 @@
                             {{ \Carbon\Carbon::parse($row->ngayTinhLuong)->format('d/m/Y') }}
                         </td>
                         <td class="px-6 py-3 text-center space-x-2">
-                            <a href="{{ url('tinhluong/detail/' . $row->maTinhLuong) }}"
+                            <a href="{{ url('admin/tinhluong/detail/' . $row->maTinhLuong) }}"
                                 class="inline-block bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-200 transition">
                                 Xem
                             </a>
-                            <a href="{{ url('tinhluong/update/' . $row->maTinhLuong) }}"
+                            <a href="{{ url('admin/tinhluong/update/' . $row->maTinhLuong) }}"
                                 class="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 transition">
                                 Sửa
                             </a>
-                            <a href="{{ url('tinhluong/delete/' . $row->maTinhLuong) }}"
+                            <a href="{{ url('admin/tinhluong/delete/' . $row->maTinhLuong) }}"
                                 onclick="return confirm('Bạn có chắc muốn xóa bản lương này không?')"
                                 class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-red-200 transition">
                                 Xóa

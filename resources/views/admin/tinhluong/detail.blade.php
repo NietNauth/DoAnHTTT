@@ -51,7 +51,7 @@
 
     {{-- Nút quay lại --}}
     <div class="mt-8 flex justify-center">
-        <a href="{{ url('tinhluong') }}"
+        <a href="{{ url('admin/tinhluong') }}"
             class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg transition font-medium shadow-sm">
             ← Quay lại danh sách
         </a>

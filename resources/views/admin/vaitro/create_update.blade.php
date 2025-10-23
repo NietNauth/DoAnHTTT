@@ -33,7 +33,7 @@
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
                 {{ isset($record) ? 'Cập nhật' : 'Thêm mới' }}
             </button>
-            <a href="{{ url('vaitro') }}" class="ml-2 text-gray-600 hover:underline">Hủy</a>
+            <a href="{{ url('admin/vaitro') }}" class="ml-2 text-gray-600 hover:underline">Hủy</a>
         </div>
     </form>
 @endsection

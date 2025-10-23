@@ -18,7 +18,7 @@ class ChamCongController extends Controller
 
     public function create()
     {
-        $action = url('chamcong/create-post');
+        $action = url('admin/chamcong/create-post');
         $nhanVienList = NhanVien::all();
         return view('admin.chamcong.create_update', compact('action', 'nhanVienList'));
     }
@@ -42,13 +42,13 @@ class ChamCongController extends Controller
 
         ChamCong::create($data);
 
-        return redirect('chamcong')->with('success', 'Thêm chấm công thành công');
+        return redirect('admin/chamcong')->with('success', 'Thêm chấm công thành công');
     }
 
     public function update($maChamCong)
     {
         $record = ChamCong::findOrFail($maChamCong);
-        $action = url("chamcong/update-post/$maChamCong");
+        $action = url("admin/chamcong/update-post/$maChamCong");
         $nhanVienList = NhanVien::all();
 
         return view('admin.chamcong.create_update', compact('record', 'action', 'nhanVienList'));
@@ -73,7 +73,7 @@ class ChamCongController extends Controller
 
         $record->update($data);
 
-        return redirect('chamcong')->with('success', 'Cập nhật chấm công thành công');
+        return redirect('admin/chamcong')->with('success', 'Cập nhật chấm công thành công');
     }
 
     public function delete($maChamCong)
@@ -81,7 +81,7 @@ class ChamCongController extends Controller
         $record = ChamCong::findOrFail($maChamCong);
         $record->delete();
 
-        return redirect('chamcong')->with('success', 'Xóa chấm công thành công');
+        return redirect('admin/chamcong')->with('success', 'Xóa chấm công thành công');
     }
 
     public function search(Request $request)

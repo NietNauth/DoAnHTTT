@@ -16,7 +16,7 @@ class ChucVuController extends Controller
 
     public function create()
     {
-        $action = url('chucvu/create-post');
+        $action = url('admin/chucvu/create-post');
         return view("admin.chucvu.create_update", compact('action'));
     }
 
@@ -29,14 +29,14 @@ class ChucVuController extends Controller
 
         ChucVu::create($request->all());
 
-        return redirect()->to('chucvu')
+        return redirect()->to('admin/chucvu')
             ->with('success', 'Thêm chức vụ thành công');
     }
 
     public function update($maChucVu)
     {
         $record = ChucVu::findOrFail($maChucVu);
-        $action = url("chucvu/update-post/$maChucVu");
+        $action = url("admin/chucvu/update-post/$maChucVu");
         return view("admin.chucvu.create_update", compact('record', 'action'));
     }
 
@@ -50,7 +50,7 @@ class ChucVuController extends Controller
         $chucVu = ChucVu::findOrFail($maChucVu);
         $chucVu->update($request->all());
 
-        return redirect('chucvu')->with('success', 'Cập nhật chức vụ thành công');
+        return redirect('admin/chucvu')->with('success', 'Cập nhật chức vụ thành công');
     }
 
     public function delete($maChucVu)
@@ -58,7 +58,7 @@ class ChucVuController extends Controller
         $chucVu = ChucVu::findOrFail($maChucVu);
         $chucVu->delete();
 
-        return redirect('chucvu')->with('success', 'Xóa chức vụ thành công');
+        return redirect('admin/chucvu')->with('success', 'Xóa chức vụ thành công');
     }
 
     public function search(Request $request)

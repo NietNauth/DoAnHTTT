@@ -18,7 +18,7 @@ class NhaCCController extends Controller
     // Form tạo nhà cung cấp mới
     public function create()
     {
-        $action = url('nhacc/create-post');
+        $action = url('admin/nhacc/create-post');
         return view("admin.nhacc.create_update", compact('action'));
     }
 
@@ -51,7 +51,7 @@ class NhaCCController extends Controller
 
         NhaCC::create($data);
 
-        return redirect()->to('nhacc')
+        return redirect()->to('admin/nhacc')
             ->with('success', 'Thêm nhà cung cấp thành công');
     }
 
@@ -59,7 +59,7 @@ class NhaCCController extends Controller
     public function update($maNCC)
     {
         $record = NhaCC::findOrFail($maNCC);
-        $action = url("nhacc/update-post/$maNCC");
+        $action = url("admin/nhacc/update-post/$maNCC");
         return view("admin.nhacc.create_update", compact('record', 'action'));
     }
 
@@ -82,7 +82,7 @@ class NhaCCController extends Controller
 
         $nhacc->update($data);
 
-        return redirect('nhacc')->with('success', 'Cập nhật nhà cung cấp thành công');
+        return redirect('admin/nhacc')->with('success', 'Cập nhật nhà cung cấp thành công');
     }
 
     // Xóa nhà cung cấp
@@ -91,7 +91,7 @@ class NhaCCController extends Controller
         $nhacc = NhaCC::findOrFail($maNCC);
         $nhacc->delete();
 
-        return redirect('nhacc')->with('success', 'Xóa nhà cung cấp thành công');
+        return redirect('admin/nhacc')->with('success', 'Xóa nhà cung cấp thành công');
     }
 
     // Tìm kiếm nhà cung cấp

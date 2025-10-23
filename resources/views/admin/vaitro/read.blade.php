@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-semibold mb-4">Danh sách vai trò</h1>
 
     <div class="mb-4 flex items-center space-x-4">
-        <form action="{{ url('vaitro/search') }}" method="GET" class="flex space-x-2">
+        <form action="{{ url('admin/vaitro/search') }}" method="GET" class="flex space-x-2">
             <input type="text" name="keyword" placeholder="Nhập mã hoặc tên vai trò..."
                 class="border px-3 py-2 rounded w-64" value="{{ request('keyword') }}">
             <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">
@@ -34,11 +34,11 @@
                         <td class="px-6 py-3">{{ $vt->tenVaiTro }}</td>
                         <td class="px-6 py-3">{{ $vt->moTa }}</td>
                         <td class="px-6 py-3 text-center space-x-2">
-                            <a href="{{ url('vaitro/update/' . $vt->maVaiTro) }}"
+                            <a href="{{ url('admin/vaitro/update/' . $vt->maVaiTro) }}"
                                 class="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 transition">
                                 Sửa
                             </a>
-                            <a href="{{ url('vaitro/delete/' . $vt->maVaiTro) }}"
+                            <a href="{{ url('admin/vaitro/delete/' . $vt->maVaiTro) }}"
                                 onclick="return confirm('Bạn có chắc muốn xóa vai trò này không?')"
                                 class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-red-200 transition">
                                 Xóa

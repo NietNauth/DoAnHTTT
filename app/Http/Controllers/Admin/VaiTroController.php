@@ -16,7 +16,7 @@ class VaiTroController extends Controller
 
     public function create()
     {
-        $action = url('vaitro/create-post');
+        $action = url('admin/vaitro/create-post');
         return view("admin.vaitro.create_update", compact('action'));
     }
 
@@ -29,14 +29,14 @@ class VaiTroController extends Controller
 
         VaiTro::create($request->all());
 
-        return redirect()->to('vaitro')
+        return redirect()->to('admin/vaitro')
             ->with('success', 'Thêm vai trò thành công');
     }
 
     public function update($maVaiTro)
     {
         $record = VaiTro::findOrFail($maVaiTro);
-        $action = url("vaitro/update-post/$maVaiTro");
+        $action = url("admin/vaitro/update-post/$maVaiTro");
         return view("admin.vaitro.create_update", compact('record', 'action'));
     }
 
@@ -50,7 +50,7 @@ class VaiTroController extends Controller
         $vaiTro = VaiTro::findOrFail($maVaiTro);
         $vaiTro->update($request->all());
 
-        return redirect('vaitro')->with('success', 'Cập nhật vai trò thành công');
+        return redirect('admin/vaitro')->with('success', 'Cập nhật vai trò thành công');
     }
 
     public function delete($maVaiTro)
@@ -58,7 +58,7 @@ class VaiTroController extends Controller
         $vaiTro = VaiTro::findOrFail($maVaiTro);
         $vaiTro->delete();
 
-        return redirect('vaitro')->with('success', 'Xóa vai trò thành công');
+        return redirect('admin/vaitro')->with('success', 'Xóa vai trò thành công');
     }
 
     public function search(Request $request)

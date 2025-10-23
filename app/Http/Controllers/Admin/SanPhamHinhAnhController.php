@@ -19,7 +19,7 @@ class SanPhamHinhAnhController extends Controller
     // Form tạo hình ảnh mới
     public function create()
     {
-        $action = url('sanpham-hinhanh/create-post');
+        $action = url('admin/sanpham-hinhanh/create-post');
         $sanPhamList = \App\Models\Admin\SanPham::all();
         return view("admin.sanpham_hinhanh.create_update", compact('action', 'sanPhamList'));
     }
@@ -57,7 +57,7 @@ class SanPhamHinhAnhController extends Controller
 
         SanPhamHinhAnh::create($data);
 
-        return redirect()->to('sanpham-hinhanh')
+        return redirect()->to('admin/sanpham-hinhanh')
             ->with('success', 'Thêm hình ảnh thành công');
     }
 
@@ -65,7 +65,7 @@ class SanPhamHinhAnhController extends Controller
     public function update($maSPHA)
     {
         $record = SanPhamHinhAnh::findOrFail($maSPHA);
-        $action = url("sanpham-hinhanh/update-post/$maSPHA");
+        $action = url("admin/sanpham-hinhanh/update-post/$maSPHA");
         $sanPhamList = \App\Models\Admin\SanPham::all();
         return view("admin.sanpham_hinhanh.create_update", compact('record', 'action', 'sanPhamList'));
     }
@@ -108,7 +108,7 @@ class SanPhamHinhAnhController extends Controller
 
         $record->update($data);
 
-        return redirect('sanpham-hinhanh')->with('success', 'Cập nhật hình ảnh thành công');
+        return redirect('admin/sanpham-hinhanh')->with('success', 'Cập nhật hình ảnh thành công');
     }
 
     // Xóa hình ảnh
@@ -120,7 +120,7 @@ class SanPhamHinhAnhController extends Controller
         }
         $record->delete();
 
-        return redirect('sanpham-hinhanh')->with('success', 'Xóa hình ảnh thành công');
+        return redirect('admin/sanpham-hinhanh')->with('success', 'Xóa hình ảnh thành công');
     }
 
     // Tìm kiếm hình ảnh
