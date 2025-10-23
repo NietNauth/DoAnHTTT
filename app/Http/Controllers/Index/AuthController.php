@@ -59,26 +59,32 @@ class AuthController extends Controller
     // Xử lý đăng ký
     public function register(Request $request)
     {
+        // Validate dữ liệu đầu vào
         $request->validate([
-            'hoTen' => 'required|string|max:100',
             'tenDangNhap' => 'required|string|max:50|unique:NguoiDung,tenDangNhap',
             'matKhau' => 'required|string|min:6|confirmed',
         ]);
 
+        // Lấy maVaiTro của vai trò "Khách hàng"
         $vaiTro = VaiTro::where('tenVaiTro', 'Khách hàng')->first();
 
+        if (!$vaiTro) {
+            return redirect()->back()->with('error', 'Vai trò "Khách hàng" không tồn tại!');
+        }
+
+        // Tạo người dùng mới
         $user = new NguoiDung();
-        $user->hoTen = $request->hoTen;
         $user->tenDangNhap = $request->tenDangNhap;
-        $user->email = $request->email;
         $user->matKhau = Hash::make($request->matKhau);
-        $user->maVaiTro = $vaiTro ? $vaiTro->maVaiTro : null;
+        $user->vaiTro = $vaiTro->maVaiTro; // gán foreign key
+
         $user->save();
 
-        Auth::login($user);
-
-        return redirect('/')->with('success', 'Đăng ký tài khoản thành công!');
+        // Không đăng nhập tự động nữa
+        return redirect('/login')->with('success', 'Đăng ký tài khoản thành công!');
     }
+
+
 
     // Đăng xuất
     public function logout(Request $request)

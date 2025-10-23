@@ -50,7 +50,7 @@
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 {{ isset($record) ? 'Cập nhật' : 'Thêm mới' }}
             </button>
-            <a href="{{ url('sanpham-thuoctinh') }}" class="text-gray-600 hover:underline">Hủy</a>
+            <a href="{{ url('admin/sanpham-thuoctinh') }}" class="text-gray-600 hover:underline">Hủy</a>
         </div>
     </form>
 @endsection
